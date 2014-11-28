@@ -20,7 +20,16 @@ public class menu {
 		
 		switch(choice){
 			case 1: 
-				System.out.println("It worked");
+				clearConsole();
+				System.out.print("Please enter the number: ");
+				input = scan.nextLine();
+				while(!validateNumber(input)){
+					System.out.println("Error with input.  Please try again.");
+					clearConsole();
+					System.out.print("Please enter the number: ");
+					input = scan.nextLine();
+				}
+				n.setValue(input);
 				break;
 			default:
 				break;
@@ -45,6 +54,7 @@ public class menu {
 		input = scan.nextLine();
 	}
 	
+	//Stackoverflow Page: http://stackoverflow.com/questions/2979383/java-clear-the-console
 	public final static void clearConsole()
 	{
 	    try
