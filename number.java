@@ -29,11 +29,11 @@ public class number {
 	}
 	
 	public void displayNumberData(double input){
-		System.out.println("Your number: " + input);
-		System.out.println("\n------------------------");
-		System.out.print("Is Prime?: ")
+		System.out.println("Your number: " + String.valueOf(input));
+		System.out.println("-----------------------------");
+		System.out.print("Is Prime?: ");
 		
-		if(isPrime(value)){
+		if(isPrime()){
 			System.out.println("true");
 		}
 		
@@ -41,15 +41,15 @@ public class number {
 			System.out.println("false");
 		}
 		
-		System.out.println("First 15 multiples: ");
+		System.out.println("\n1First 25 multiples: ");
 		
 		printMultiples(input);
 	}
 	
 	private void printMultiples(double input){
-		for(int counter = 1; counter <= 15; counter++){
+		for(int counter = 0; counter <= 4; counter++){
 			for(int subcounter = 1; subcounter <= 5; subcounter++){
-				System.out.print("\t" + input * counter);
+				System.out.print(String.valueOf(input * (subcounter + (counter * 5))) + "\t");
 			}
 			System.out.println("");
 		}

@@ -4,32 +4,44 @@ public class menu {
 
 	static Scanner scan = new Scanner(System.in);
 	static String input = "";
-	static int choice = 0;
+	
 	static number n = new number();
+	static EquationHandler eh = new EquationHandler();
 	
 	public static void main(String[] args) {
-		promptMenu();
+		promptMainMenu();
 		
-		while(!n.checkIfNumber(input) && !acceptableAnswer(choice)){
+		while(!n.validateNumber(input) && !acceptableAnswer(Integer.parseInt(input))){
 			clearConsole();
 			System.out.println("Error with input.  Please try again.");
-			promptMenu();
+			promptMainMenu();
 		}
-		
-		choice = Integer.parseInt(input);
-		
-		switch(choice){
+				
+		switch(Integer.parseInt(input)){
 			case 1: 
 				clearConsole();
 				System.out.print("Please enter the number: ");
 				input = scan.nextLine();
-				while(!validateNumber(input)){
-					System.out.println("Error with input.  Please try again.");
+				while(!n.validateNumber(input)){
 					clearConsole();
-					System.out.print("Please enter the number: ");
+					System.out.println("Error with input.  Please try again.");
+					System.out.print("\nPlease enter the number: ");
 					input = scan.nextLine();
 				}
 				n.setValue(input);
+				n.displayNumberData(Double.parseDouble(input));
+				break;
+			case 2:
+				clearConsole();
+				promptEquationMenu();
+				input = scan.nextLine();
+				while(!n.validateNumber(input)){
+					clearConsole();
+					System.out.println("Error with input.  Please try again.");
+					promptEquationMenu();
+					input = scan.nextLine();
+				}
+				
 				break;
 			default:
 				break;
@@ -37,7 +49,7 @@ public class menu {
 	}
 
 	private static Boolean acceptableAnswer(int test){
-		if(test == 1){
+		if(test == 1 || test == 2){
 			return true;
 		}
 		else{
@@ -45,15 +57,23 @@ public class menu {
 		}
 	}
 	
-	private static void promptMenu(){
+	private static void promptMainMenu(){
 		System.out.println("Welcome to my Math Suite");
 		System.out.println("\nPlease select an option below:");
 		System.out.println("-----------------------------");
 		System.out.println("1. Number Information");
+		System.out.println("2. Solve Equation");
+		System.out.print("\nSelection: ");
 		
 		input = scan.nextLine();
 	}
 	
+	
+	public static void promptEquationMenu(){
+		System.out.println("Equations Sub-Menu");
+		System.out.println("\nPlease select an option below:");
+		System.out.println("-----------------------------");
+	}
 	//Stackoverflow Page: http://stackoverflow.com/questions/2979383/java-clear-the-console
 	public final static void clearConsole()
 	{
@@ -76,3 +96,5 @@ public class menu {
 	    }
 	}
 }
+
+
